@@ -1,0 +1,110 @@
+  Here is a complete overview of web layout fundamentals—including the CSS Box Model, Width & Height sizing, and standard Container & Page Structure—along with visual diagrams.
+  ──────
+  ### 1. The CSS Box Model
+
+  Every HTML element is treated as a rectangular box. The box consists of 4 concentric layers:
+
+    +-------------------------------------------------------------+
+    | MARGIN (Transparent space outside the element)              |
+    |   +-----------------------------------------------------+   |
+    |   | BORDER (Visible boundary / outline)                 |   |
+    |   |   +---------------------------------------------+   |   |
+    |   |   | PADDING (Space between content and border)  |   |   |
+    |   |   |   +-------------------------------------+   |   |   |
+    |   |   |   |                                     |   |   |   |
+    |   |   |   | CONTENT (Text, images, child nodes) |   |   |   |
+    |   |   |   | (Width × Height)                    |   |   |   |
+    |   |   |   |                                     |   |   |   |
+    |   |   |   +-------------------------------------+   |   |   |
+    |   |   +---------------------------------------------+   |   |
+    |   +-----------------------------------------------------+   |
+    +-------------------------------------------------------------+
+
+  #### Breakdown of Box Properties:
+
+  • Content: The core area where text, images, or child elements appear. Controlled by width and height.
+  • Padding: Clears an area around the content. It takes on the element's background color.
+      • Shorthand: padding: [top] [right] [bottom] [left]; (Clockwise: TRBL)
+  • Border: A line wrapping around the padding and content (e.g., border: 1px solid #ccc;).
+  • Margin: Outer transparent space separating this element from adjacent elements.
+      • margin: 0 auto; is commonly used to horizontally center block elements with a fixed or max width.
+
+  ──────
+  ### 2. box-sizing: Content-Box vs. Border-Box
+
+  How width and height are calculated depends on the box-sizing property:
+
+  ┌──────────────────────────────────────────────────────────────────────────────────────────────┐ ┌──────────────────────────────────────────────────────────────────────────────────┐
+  │                              box-sizing: content-box (Default)                               │ │             box-sizing: border-box (Recommended / Modern Standard)               │
+  │                                                                                              │ │                                                                                  │
+  │                                                                                              │ │                                                                                  │
+  │ ┌──────────────────────────────────────────────────────────────────────────────────────────┐ │ ├────────────────────────────────────────────┐   ┌───────────────────────────────┐ │
+  │ │                                                                                          │ │ │                                            │   │                               │ │
+  │ │ Total Rendered Width = width + padding-left + padding-right + border-left + border-right │ │ │ BB1["Total Rendered Width = width (Padding │   │ Border are absorbed inside)"] │ │
+  │ │                                                                                          │ │ │                                            │   │                               │ │
+  │ └──────────────────────────────────────────────────────────────────────────────────────────┘ │ ├────────────────────────────────────────────┘   └───────────────────────────────┘ │
+  │                                                                                              │ │                                                                                  │
+  └──────────────────────────────────────────────────────────────────────────────────────────────┘ └──────────────────────────────────────────────────────────────────────────────────┘
+
+  │ Tip
+  │ Modern best practice is to apply universal border-box sizing in your CSS:
+  │
+  │   *, *::before, *::after {
+  │     box-sizing: border-box;
+  │   }
+  ──────
+  ### 3. Width & Height Sizing Concepts
+
+   Property / Unit                                          | Description                                                                  | Common Use Case
+  ----------------------------------------------------------|------------------------------------------------------------------------------|-------------------------------------------------------------
+   auto                                                     | Default behavior (Block elements expand to 100% width, height fits content). | Fluid block elements.
+   px                                                       | Fixed, static pixel dimensions.                                              | Buttons, icons, borders, fixed sidebars.
+   %                                                        | Relative to the parent element's dimension.                                  | Responsive columns (e.g., width: 50%).
+   vw / vh                                                  | Viewport Width / Viewport Height (1vw = 1% of the screen width).             | Hero sections (min-height: 100vh).
+   max-width                                                | Prevents an element from growing larger than a specified value.              | Responsive containers (max-width: 1200px; width: 100%;).
+   min-height                                               | Guarantees a minimum height without clipping when content grows.             | Page wrapper to force footer to bottom (min-height: 100vh).
+  ──────
+  ### 4. Page Layout Structure (Containers, Header, & Semantic Elements)
+
+  Here is the standard structural layout of a modern web page:
+
+  ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+  │                                                                       Screen / Viewport (100vw × 100vh)                                                                       │
+  │                                                                                                                                                                               │
+  │                                                                                                                                                                               │
+  │ ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐ │
+  │ │                                                       Max-Width Container (e.g., max-width: 1200px; margin: 0 auto)                                                       │ │
+  │ │                                                                                                                                                                           │ │
+  │ │                                                                                                                                                                           │ │
+  │ │                                      ┌───────────────────────────────────────────────────────────────────────────────┐                                                    │ │
+  │ │                                      │                    <main> / Content Wrapper (Flex or Grid)                    │                                                    │ │
+  │ │                                      │                                                                               │                                                    │ │
+  │ │                                      │                                                                               │                                                    │ │
+  │ │ ┌──────────────────────────────────┐ │ ┌──────────────────────────────────────┐   ┌────────────────────────────────┐ │ ┌────────────────────────────────────────────────┐ │ │
+  │ │ │                                  │ │ │                                      │   │                                │ │ │                                                │ │ │
+  │ │ │ <header> (Logo, Nav Bar, Search) │ │ │ <section> / <article> (Main Content) │   │ <aside> (Sidebar / Navigation) │ │ │ <footer> (Copyright, Site Links, Social Icons) │ │ │
+  │ │ │                                  │ │ │                                      │   │                                │ │ │                                                │ │ │
+  │ │ └──────────────────────────────────┘ │ └──────────────────────────────────────┘   └────────────────────────────────┘ │ └────────────────────────────────────────────────┘ │ │
+  │ │                                      │                                                                               │                                                    │ │
+  │ │                                      └───────────────────────────────────────────────────────────────────────────────┘                                                    │ │
+  │ │                                                                                                                                                                           │ │
+  │ └───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘ │
+  │                                                                                                                                                                               │
+  └───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  #### Key Layout Roles:
+
+  • <header>: Top-level banner containing branding, navigation menus (<nav>), search bars, or user profile controls.
+  • .container: A wrapper utility class to constrain the content's maximum width on large screens and center it horizontally:
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+  • <main>: The dominant, unique content of the <body>.
+  • <aside>: Secondary content, sidebars, or contextual callouts.
+  • <footer>: Bottom section containing legal notices, secondary links, and credits.
