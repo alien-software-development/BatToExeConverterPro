@@ -1,0 +1,21 @@
+# Visual Studio & .NET temporary files
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+.vs/
+*.user
+*.suo
+*.userprefs
+*.pidb
+*.booproj
+*.sln.docstates
+
+# Build artifacts (ignore intermediate debug files, preserve release executables)
+*.pdb
+*.tmp
+
+# System Files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
