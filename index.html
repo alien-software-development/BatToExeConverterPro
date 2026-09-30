@@ -21,6 +21,7 @@
       --neon-green: #00ffaa;
       --neon-cyan: #00f0ff;
       --neon-purple: #a855f7;
+      --neon-amber: #f59e0b;
       --neon-glow: rgba(0, 255, 170, 0.18);
       
       --text-main: #f8fafc;
@@ -39,6 +40,10 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -97,7 +102,7 @@
     header {
       position: sticky;
       top: 0;
-      background: rgba(3, 7, 18, 0.85);
+      background: rgba(3, 7, 18, 0.88);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-subtle);
       z-index: 100;
@@ -144,7 +149,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 28px;
       list-style: none;
     }
     .nav-links a {
@@ -198,9 +203,19 @@
       border-color: var(--text-muted);
     }
 
+    .btn-cyan {
+      background: var(--neon-cyan);
+      color: #030712;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+    }
+    .btn-cyan:hover {
+      background: #38f9ff;
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.55);
+    }
+
     /* Hero Section */
     .hero {
-      padding: 90px 0 60px;
+      padding: 80px 0 50px;
       text-align: center;
     }
     .hero-badge {
@@ -243,12 +258,26 @@
       justify-content: center;
       gap: 16px;
       flex-wrap: wrap;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
 
-    /* Interactive Showcase Card */
+    /* Hero Cyber Banner */
+    .banner-container {
+      max-width: 1060px;
+      margin: 0 auto 40px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-accent);
+      box-shadow: 0 0 50px rgba(0, 255, 170, 0.22);
+    }
+    .banner-container img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Live Comparison Box */
     .showcase-wrapper {
-      max-width: 1000px;
+      max-width: 1060px;
       margin: 0 auto;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
@@ -285,7 +314,6 @@
     .code-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      divide-x: 1px solid var(--border-subtle);
     }
     @media (max-width: 768px) {
       .code-grid { grid-template-columns: 1fr; }
@@ -318,7 +346,7 @@
       line-height: 1.6;
     }
 
-    /* Features Grid */
+    /* Section Styling */
     .section-title-wrap {
       text-align: center;
       margin: 80px 0 45px;
@@ -337,6 +365,7 @@
       letter-spacing: -0.5px;
     }
 
+    /* Features Grid */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -371,6 +400,78 @@
       color: var(--text-muted);
       font-size: 14px;
       line-height: 1.6;
+    }
+
+    /* Defender Guide Section */
+    .guide-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 36px;
+      margin-bottom: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .guide-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-green));
+    }
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .guide-step {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-sm);
+      padding: 22px;
+    }
+    .guide-step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(0, 255, 170, 0.15);
+      color: var(--neon-green);
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    .guide-step h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+    .guide-step p, .guide-step li {
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .guide-step ol {
+      padding-left: 18px;
+      margin-top: 8px;
+    }
+    .code-pill {
+      display: block;
+      background: #020408;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--neon-cyan);
+      margin-top: 10px;
+      word-break: break-all;
     }
 
     /* Specifications Table */
@@ -410,6 +511,30 @@
       font-weight: 600;
       background: rgba(0, 255, 170, 0.1);
       color: var(--neon-green);
+    }
+
+    /* Download Box */
+    .download-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 900px;
+      margin: 30px auto 0;
+    }
+    @media (max-width: 768px) {
+      .download-grid { grid-template-columns: 1fr; }
+    }
+    .dl-card {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 30px 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .dl-card:hover {
+      border-color: var(--neon-green);
+      transform: translateY(-4px);
     }
 
     /* Footer */
@@ -462,11 +587,11 @@
       </a>
       <ul class="nav-links">
         <li><a href="#features">Features</a></li>
-        <li><a href="#obfuscation">Quantum Armor</a></li>
-        <li><a href="#installer">Setup Wizard</a></li>
+        <li><a href="#licensing">Ed25519 Crypto</a></li>
+        <li><a href="#defender">Defender Guide</a></li>
         <li><a href="#specs">Specifications</a></li>
       </ul>
-      <a href="#download" class="btn-cta">⚡ Get Pro Studio</a>
+      <a href="#download" class="btn-cta">⚡ Direct Downloads</a>
     </div>
   </header>
 
@@ -474,7 +599,7 @@
   <section class="hero">
     <div class="container">
       <div class="hero-badge">
-        <span>⚡</span> Native C# PE Compilation • Zero Dependencies • Military-Grade AES-256
+        <span>⚡</span> Native C# PE Compilation • Zero Dependencies • Asymmetric Ed25519 Security
       </div>
       <h1>
         Transform Windows Batch Scripts into <br />
@@ -484,12 +609,20 @@
         Protect intellectual property, bundle embedded assets, enforce UAC administrator elevation, and bypass script tampering with dynamic Quantum Polymorphic Obfuscation.
       </p>
       <div class="hero-actions">
-        <a href="#download" class="btn-cta">
-          <span>⚡ Download Offline Setup v3.5</span>
+        <a href="Release_Build/Installer/BatToExePro_Setup.exe" class="btn-cta">
+          <span>⚡ Download Setup Wizard (.exe)</span>
+        </a>
+        <a href="Release_Build/AlienBatToExePro_v3.5_Portable.zip" class="btn-secondary btn-cyan">
+          <span>📦 Download Portable Suite (.zip)</span>
         </a>
         <a href="https://github.com/alien-software-development/BatToExeConverterPro" target="_blank" class="btn-secondary">
-          <span>📦 View on GitHub</span>
+          <span>⭐ GitHub Repository</span>
         </a>
+      </div>
+
+      <!-- Hero Cyber Banner -->
+      <div class="banner-container">
+        <img src="Assets/banner.png" alt="Alien BAT to EXE Pro Studio v3.5 Hero Banner" />
       </div>
 
       <!-- Live Comparison Box -->
@@ -579,6 +712,93 @@ Execution: In-Memory Decryption</code></pre>
     </div>
   </section>
 
+  <!-- Ed25519 Cryptographic Licensing Section -->
+  <section class="container" id="licensing">
+    <div class="section-title-wrap">
+      <div class="section-subtitle">Commercial Security Architecture</div>
+      <h2 class="section-title">Asymmetric Ed25519 Licensing & HWID Binding</h2>
+    </div>
+
+    <div class="feature-card" style="margin-bottom: 70px; border-color: rgba(168, 85, 247, 0.35);">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+        <div>
+          <span class="feature-icon" style="color: var(--neon-purple);">🔑</span>
+          <h3 style="color: #ffffff; margin-bottom: 12px;">Asymmetric Cryptography</h3>
+          <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+            Client software contains <strong>only the Master Ed25519 Public Key</strong>. Digital signatures can only be minted by the vendor’s private admin keygen, making unauthorized key generation mathematically impossible.
+          </p>
+        </div>
+        <div>
+          <span class="feature-icon" style="color: var(--neon-cyan);">💻</span>
+          <h3 style="color: #ffffff; margin-bottom: 12px;">Spoof-Resistant Hardware ID (HWID)</h3>
+          <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+            Binds licenses to unique client machine fingerprints derived from Windows Registry <code>MachineGuid</code>, CPU architecture, processor count, and hardware node signature.
+          </p>
+        </div>
+        <div>
+          <span class="feature-icon" style="color: var(--neon-green);">⏱</span>
+          <h3 style="color: #ffffff; margin-bottom: 12px;">Anti-Clock Rollback Defense</h3>
+          <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+            Integrated clock tampering detection halts execution and flags trial abuse if system dates are reversed to evade the 7-day evaluation period.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Windows Defender Guide Section -->
+  <section class="container" id="defender">
+    <div class="section-title-wrap">
+      <div class="section-subtitle">Antivirus Troubleshooting</div>
+      <h2 class="section-title">Windows Defender & Antivirus False Positives</h2>
+    </div>
+
+    <div class="guide-card">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+        <span style="font-size: 26px;">🛡️</span>
+        <h3 style="font-size: 22px; font-weight: 800; color: #ffffff;">Why Defender Flags New Executables</h3>
+      </div>
+      <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7;">
+        Because newly compiled <code>.exe</code> files are created on your machine and have not yet built up Microsoft SmartScreen cloud reputation or acquired an expensive EV Code Signing Certificate, Windows Defender may classify them as a <strong>false positive</strong> (e.g. <code>Trojan:Win32/Wacatac!ml</code> where <code>!ml</code> stands for Machine Learning heuristic). Follow these instructions to allow execution:
+      </p>
+
+      <div class="guide-grid">
+        <div class="guide-step">
+          <div class="guide-step-num">1</div>
+          <h4>SmartScreen Prompt</h4>
+          <p>When the blue "Windows protected your PC" dialog appears:</p>
+          <ol>
+            <li>Click <strong>More info</strong>.</li>
+            <li>Click <strong>Run anyway</strong> at the bottom.</li>
+          </ol>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-step-num">2</div>
+          <h4>Allow in Windows Security</h4>
+          <p>If Defender quarantined the executable:</p>
+          <ol>
+            <li>Open <strong>Windows Security</strong>.</li>
+            <li>Click <strong>Virus & threat protection</strong>.</li>
+            <li>Click <strong>Protection history</strong>.</li>
+            <li>Select the blocked item &rarr; click <strong>Actions</strong> &rarr; <strong>Allow on device</strong>.</li>
+          </ol>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-step-num">3</div>
+          <h4>Development Folder Exclusion</h4>
+          <p>Prevent Defender from scanning your compilation or output folder:</p>
+          <ol>
+            <li>Go to <strong>Virus & threat protection settings</strong> &rarr; <strong>Manage settings</strong>.</li>
+            <li>Click <strong>Exclusions</strong> &rarr; <strong>Add an exclusion</strong> &rarr; <strong>Folder</strong>.</li>
+          </ol>
+          <span class="code-pill">Add-MpPreference -ExclusionPath "C:\YourBuildFolder"</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Technical Specs -->
   <section class="container" id="specs">
     <div class="section-title-wrap">
@@ -607,8 +827,8 @@ Execution: In-Memory Decryption</code></pre>
             <td><span class="badge-val">Integrated</span></td>
           </tr>
           <tr>
-            <td>Security Ciphers</td>
-            <td>Dynamic AES-256 CBC, SHA-256 Anti-Tamper Checksum, XOR Polymorphic Scrambler</td>
+            <td>Cryptographic Security</td>
+            <td>Dynamic AES-256 CBC, Asymmetric Ed25519 Digital Signatures, SHA-256 Checksum</td>
             <td><span class="badge-val">Military Grade</span></td>
           </tr>
           <tr>
@@ -621,6 +841,11 @@ Execution: In-Memory Decryption</code></pre>
             <td>Self-contained installer with UAC Elevation, Start Menu & Desktop shortcuts, and Uninstaller</td>
             <td><span class="badge-val">100% Offline</span></td>
           </tr>
+          <tr>
+            <td>Zero-Dependency Portable</td>
+            <td>Pre-packaged .zip archive with embedded Python & Tkinter runtime for instant execution</td>
+            <td><span class="badge-val">Instant Run</span></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -629,17 +854,33 @@ Execution: In-Memory Decryption</code></pre>
   <!-- Download & Action Section -->
   <section class="container" id="download" style="text-align: center; margin-bottom: 90px;">
     <div style="background: linear-gradient(180deg, var(--bg-card) 0%, #060a12 100%); border: 1px solid var(--border-accent); border-radius: var(--radius-lg); padding: 50px 30px;">
-      <h2 style="font-size: 32px; font-weight: 800; margin-bottom: 12px;">Ready to Elevate Your Batch Scripts?</h2>
-      <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 30px;">
-        Run the standalone Offline Setup Wizard to install BAT to EXE Converter Pro Studio v3.5 and start compiling enterprise-ready executables today.
+      <h2 style="font-size: 34px; font-weight: 800; margin-bottom: 12px;">Ready to Elevate Your Batch Scripts?</h2>
+      <p style="color: var(--text-muted); max-width: 640px; margin: 0 auto 30px;">
+        Choose between the 100% offline self-contained Setup Wizard or the portable zero-dependency ZIP archive to start compiling enterprise-ready executables today.
       </p>
-      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-        <a href="Release_Build/Installer/BatToExePro_Setup.exe" class="btn-cta">
-          <span>⚡ Download BatToExePro_Setup.exe</span>
-        </a>
-        <a href="https://github.com/alien-software-development/BatToExeConverterPro" target="_blank" class="btn-secondary">
-          <span>⭐ Star on GitHub</span>
-        </a>
+
+      <div class="download-grid">
+        <div class="dl-card">
+          <span style="font-size: 38px; display: block; margin-bottom: 14px;">⚡</span>
+          <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Offline Setup Wizard</h3>
+          <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 20px;">
+            Full installer with UAC Administrator rights, Start Menu shortcuts, and Windows Explorer context menu integration.
+          </p>
+          <a href="Release_Build/Installer/BatToExePro_Setup.exe" class="btn-cta" style="width: 100%; justify-content: center;">
+            <span>⬇ Download Setup (.exe)</span>
+          </a>
+        </div>
+
+        <div class="dl-card">
+          <span style="font-size: 38px; display: block; margin-bottom: 14px;">📦</span>
+          <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Portable Zero-Dependency Suite</h3>
+          <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 20px;">
+            Standalone portable archive. Extract to a USB drive or local directory and launch immediately without installing.
+          </p>
+          <a href="Release_Build/AlienBatToExePro_v3.5_Portable.zip" class="btn-cta btn-cyan" style="width: 100%; justify-content: center;">
+            <span>⬇ Download Portable (.zip)</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -650,7 +891,8 @@ Execution: In-Memory Decryption</code></pre>
       <div class="footer-brand">👽 Alien Software Development</div>
       <p>Next-Generation Systems, Automation & Security Engineering.</p>
       <ul class="footer-links">
-        <li><a href="https://github.com/alien-software-development" target="_blank">GitHub Organization</a></li>
+        <li><a href="https://github.com/alien-software-development/BatToExeConverterPro" target="_blank">GitHub Release Repository</a></li>
+        <li><a href="https://github.com/alien-software-development/BatToExeConverterPro-Source" target="_blank">GitHub Source Repository</a></li>
         <li><a href="https://aliensoftwaredevelopment.com" target="_blank">Official Website</a></li>
         <li><a href="https://wa.me/8801710978997" target="_blank">Direct Support</a></li>
       </ul>
